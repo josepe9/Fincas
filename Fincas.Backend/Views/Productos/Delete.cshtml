@@ -18,12 +18,6 @@
             @Html.DisplayFor(model => model.Nombre)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ServicioId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ServicioId)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.Precio)
         </dt>
         <dd>
@@ -40,6 +34,12 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Publicado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Servicio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Servicio.Nombre)
         </dd>
     </dl>
     

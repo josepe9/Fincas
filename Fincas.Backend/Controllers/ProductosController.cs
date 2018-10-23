@@ -22,7 +22,8 @@ namespace Fincas.Backend.Controllers
         // GET: Productos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Producto.ToListAsync());
+            var applicationDbContext = _context.Producto.Include(p => p.Servicio);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Productos/Details/5
@@ -34,6 +35,7 @@ namespace Fincas.Backend.Controllers
             }
 
             var producto = await _context.Producto
+                .Include(p => p.Servicio)
                 .FirstOrDefaultAsync(m => m.ProductoId == id);
             if (producto == null)
             {
@@ -46,6 +48,7 @@ namespace Fincas.Backend.Controllers
         // GET: Productos/Create
         public IActionResult Create()
         {
+            ViewData["ServicioId"] = new SelectList(_context.Servicio, "ServicioID", "Nombre");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace Fincas.Backend.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductoId,Nombre,ServicioId,Precio,Disponible,Publicado")] Producto producto)
+        public async Task<IActionResult> Create([Bind("ProductoId,ServicioId,Nombre,Precio,Disponible,Publicado")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace Fincas.Backend.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ServicioId"] = new SelectList(_context.Servicio, "ServicioID", "Nombre", producto.ServicioId);
             return View(producto);
         }
 
@@ -78,6 +82,7 @@ namespace Fincas.Backend.Controllers
             {
                 return NotFound();
             }
+            ViewData["ServicioId"] = new SelectList(_context.Servicio, "ServicioID", "Nombre", producto.ServicioId);
             return View(producto);
         }
 
@@ -86,7 +91,7 @@ namespace Fincas.Backend.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductoId,Nombre,ServicioId,Precio,Disponible,Publicado")] Producto producto)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductoId,ServicioId,Nombre,Precio,Disponible,Publicado")] Producto producto)
         {
             if (id != producto.ProductoId)
             {
@@ -113,6 +118,7 @@ namespace Fincas.Backend.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ServicioId"] = new SelectList(_context.Servicio, "ServicioID", "Nombre", producto.ServicioId);
             return View(producto);
         }
 
@@ -125,6 +131,7 @@ namespace Fincas.Backend.Controllers
             }
 
             var producto = await _context.Producto
+                .Include(p => p.Servicio)
                 .FirstOrDefaultAsync(m => m.ProductoId == id);
             if (producto == null)
             {
