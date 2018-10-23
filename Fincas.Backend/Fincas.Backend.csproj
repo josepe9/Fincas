@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fincas.Common1\Fincas.Common.csproj" />
-    <ProjectReference Include="..\Fincas.Domain1\Fincas.Domain.csproj" />
+    <ProjectReference Include="..\Fincas.Common\Fincas.Common.csproj" />
+    <ProjectReference Include="..\Fincas.Domain\Fincas.Domain.csproj" />
   </ItemGroup>
 
 </Project>
