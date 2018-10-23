@@ -8,13 +8,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fincas.Common\Fincas.Common.csproj" />
-    <ProjectReference Include="..\Fincas.Domain\Fincas.Domain.csproj" />
+    <ProjectReference Include="..\Fincas.Common1\Fincas.Common.csproj" />
+    <ProjectReference Include="..\Fincas.Domain1\Fincas.Domain.csproj" />
   </ItemGroup>
 
 </Project>
