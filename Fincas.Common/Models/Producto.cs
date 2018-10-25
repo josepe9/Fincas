@@ -1,5 +1,6 @@
 ﻿namespace Fincas.Common.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -33,6 +34,7 @@
         public int Diaspublicado { get { return (((DateTime.Now.Year - Publicado.Year)*365)+ 
                     ((DateTime.Now.Month - Publicado.Month) * 30)+(DateTime.Now.Day - Publicado.Day)); } }
 
+        [JsonIgnore]
         public Servicio Servicio { get; set; }
     }
 }
